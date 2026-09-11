@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b0e">
+  <meta name="description" content="Ferramentas de consulta, automação, otimização e gerenciamento de dados.">
+  <title>Caio Data — Central de projetos</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23090b0e'/%3E%3Cpath d='M21 8a9 9 0 1 0 0 16' fill='none' stroke='%232988ff' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M22 7l-5 18' stroke='%23e41324' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#projetos">Ir para os projetos</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand brand-small" href="#top" aria-label="Caio Data — início">
+        <span class="brand-caio">CAIO</span><span class="brand-slash" aria-hidden="true">/</span><span class="brand-data">DATA</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a class="nav-link is-active" href="#projetos"><span aria-hidden="true">◇</span> Projetos</a>
+        <a class="nav-link" href="#conhecimento"><span aria-hidden="true">▣</span> Conhecimento</a>
+        <a class="nav-link" href="#ferramentas"><span aria-hidden="true">⌁</span> Ferramentas</a>
+      </nav>
+
+      <label class="search-control" for="project-search">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <span class="sr-only">Buscar projeto</span>
+        <input id="project-search" type="search" placeholder="Buscar projeto" autocomplete="off">
+        <kbd aria-hidden="true">/</kbd>
+      </label>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Central de projetos</p>
+        <h1 id="page-title" class="brand brand-large">
+          <span class="brand-caio">CAIO</span><span class="brand-slash" aria-hidden="true">/</span><span class="brand-data">DATA</span>
+        </h1>
+        <p class="hero-subtitle">Ferramentas de consulta, automação, otimização e gerenciamento de dados.</p>
+      </div>
+      <aside class="hero-note" aria-label="Resumo do painel">
+        <span class="terminal-mark" aria-hidden="true">&gt;_</span>
+        <p>Projetos práticos para consulta, automação e suporte técnico.</p>
+      </aside>
+    </section>
+
+    <span id="ferramentas" class="anchor-target" aria-hidden="true"></span>
+    <section id="projetos" class="content-section" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Projetos e ferramentas</p>
+          <h2 id="projects-title">Projetos</h2>
+        </div>
+        <span class="section-count">4 projetos</span>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card" data-project-card data-search="maxdeck ferramenta web scripts automação tendichat maxatendimento tampermonkey">
+          <header class="card-header">
+            <div>
+              <p class="card-type"><span class="type-dot" aria-hidden="true"></span> Ferramenta web</p>
+              <h3>MaxDeck</h3>
+              <p class="card-description">Scripts de automação</p>
+            </div>
+            <span class="badge badge-red">Destaque</span>
+          </header>
+          <img class="preview-frame project-preview" src="assets/previews/maxdeck.png" width="1244" height="586" alt="Prévia visual do catálogo do MaxDeck">
+          <ul class="feature-list compact-list">
+            <li>Integrações</li><li>Scripts prontos</li><li>Acesso rápido</li>
+          </ul>
+          <a class="card-action" href="https://caio-csar.github.io/MaxDeck/" target="_blank" rel="noopener noreferrer" aria-label="Abrir MaxDeck em nova aba">Abrir MaxDeck <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="project-card" data-project-card data-search="nexus utilitário instalador atualização powershell pastas cloud suporte comando">
+          <header class="card-header">
+            <div>
+              <p class="card-type"><span class="type-dot" aria-hidden="true"></span> Utilitário</p>
+              <h3>NEXUS</h3>
+              <p class="card-description">Instalador e utilitários</p>
+            </div>
+            <span class="badge">Sistema</span>
+          </header>
+          <div class="preview-frame terminal-preview" aria-label="Prévia do menu PowerShell do NEXUS" role="img">
+            <div class="terminal-title"><span aria-hidden="true">›_</span> Administrador: Windows PowerShell</div>
+            <pre><b>NEXUS  |  MAXDATA</b>
+Automação técnica
+
+PRINCIPAL
+ [1] Instalar Sistema
+ [2] Atualizar Sistema
+ [3] Baixar Última Versão</pre>
+          </div>
+          <div class="command-box">
+            <span class="command-label">PowerShell</span>
+            <code id="nexus-command">irm https://caio-csar.github.io/NEXUS/NEXUS_CORE.ps1 | iex</code>
+          </div>
+          <button id="copy-nexus" class="card-action button-action" type="button" aria-describedby="copy-status">Copiar comando <span aria-hidden="true">▣</span></button>
+          <span id="copy-status" class="sr-only" role="status" aria-live="polite"></span>
+        </article>
+
+        <article class="project-card" data-project-card data-search="guia manager telas flags funções consulta busca menus navegação">
+          <header class="card-header">
+            <div>
+              <p class="card-type"><span class="type-dot" aria-hidden="true"></span> Base de consulta</p>
+              <h3>Guia Manager</h3>
+              <p class="card-description">Telas, flags e funções</p>
+            </div>
+            <span class="badge">Referência</span>
+          </header>
+          <img class="preview-frame project-preview" src="assets/previews/guia-manager.webp" width="960" height="510" alt="Prévia da busca de telas do Guia Manager">
+          <div class="guide-stats" aria-label="840 telas, 1.911 flags e 1.266 funções">
+            <strong><b>840</b><small>telas</small></strong>
+            <span><b>1.911</b><small>flags</small></span>
+            <span><b>1.266</b><small>funções</small></span>
+          </div>
+          <a class="card-action" href="https://caio-csar.github.io/guia-manager-telas/" target="_blank" rel="noopener noreferrer" aria-label="Consultar Guia em nova aba">Consultar Guia <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="project-card project-card-wide" data-project-card data-search="maxhub aplicativo mapeamento atualização bancos executáveis instâncias manager última versão">
+          <header class="card-header">
+            <div>
+              <p class="card-type"><span class="type-dot" aria-hidden="true"></span> Aplicativo</p>
+              <h3>MaxHub</h3>
+              <p class="card-description">Mapeamento e atualização de bancos</p>
+            </div>
+            <span class="badge badge-blue">Atualizações</span>
+          </header>
+          <img class="preview-frame project-preview maxhub-image" src="assets/previews/maxhub.webp" width="960" height="510" alt="Prévia dos cartões de bancos do MaxHub">
+          <ul class="feature-list compact-list">
+            <li>Bancos mapeados</li><li>Versões conferidas</li><li>Atualização rápida</li>
+          </ul>
+          <a class="card-action" href="https://github.com/caio-csar/MaxHub-Releases/releases/latest" target="_blank" rel="noopener noreferrer" aria-label="Ver última versão em nova aba">Ver última versão <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section id="conhecimento" class="content-section knowledge-section" aria-labelledby="knowledge-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Bases de conhecimento</p>
+          <h2 id="knowledge-title">Conhecimento</h2>
+        </div>
+        <span class="section-count">2 bases</span>
+      </div>
+
+      <div class="knowledge-grid">
+        <article class="knowledge-card" data-project-card data-search="notebooklm nova base atualizada bd manager 152 sql relatórios dml engenharia dados mapeamento regras negócio telas menus diagnóstico erros">
+          <header class="knowledge-header">
+            <div class="knowledge-icon" aria-hidden="true">▤</div>
+            <div><p class="card-type">NotebookLM</p><h3>NotebookLM — Nova</h3><p>Baseado no BD Manager 152</p></div>
+            <span class="badge badge-red">Base atualizada</span>
+          </header>
+          <ul class="scope-list">
+            <li>Consultas SQL e Relatórios</li>
+            <li>Correções e Scripts DML</li>
+            <li>Engenharia de Dados e Mapeamento de BD</li>
+            <li>Regras de Negócio Modular</li>
+            <li>Navegação de Telas e Menus</li>
+            <li>Diagnóstico de Erros de Sistema</li>
+          </ul>
+          <a class="knowledge-action" href="https://notebook.google.com/notebook/86d68261-51e9-4b08-934c-adb2e6ce59ad" target="_blank" rel="noopener noreferrer" aria-label="Abrir base nova em nova aba">Abrir base nova <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="knowledge-card" data-project-card data-search="notebooklm antiga base histórica bd manager 151 sql relatórios dml engenharia dados mapeamento regras negócio telas menus diagnóstico erros">
+          <header class="knowledge-header">
+            <div class="knowledge-icon muted" aria-hidden="true">▤</div>
+            <div><p class="card-type">NotebookLM</p><h3>NotebookLM — Antiga</h3><p>Baseado no BD Manager 151</p></div>
+            <span class="badge">Base histórica</span>
+          </header>
+          <ul class="scope-list">
+            <li>Consultas SQL e Relatórios</li>
+            <li>Correções e Scripts DML</li>
+            <li>Engenharia de Dados e Mapeamento de BD</li>
+            <li>Regras de Negócio Modular</li>
+            <li>Navegação de Telas e Menus</li>
+            <li>Diagnóstico de Erros de Sistema</li>
+          </ul>
+          <a class="knowledge-action" href="https://notebook.google.com/notebook/5c394b0f-8550-4e8c-aef2-895afd612ac9" target="_blank" rel="noopener noreferrer" aria-label="Abrir base histórica em nova aba">Abrir base histórica <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </section>
+
+    <p id="empty-state" class="empty-state" role="status" aria-live="polite" hidden>Nenhum projeto encontrado para essa busca.</p>
+  </main>
+
+  <footer class="page-footer">
+    <span><b>CAIO</b> DATA</span>
+    <small>Consulta • Automação • Dados</small>
+  </footer>
+</body>
+</html>
