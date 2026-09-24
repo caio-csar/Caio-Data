@@ -1,35 +1,70 @@
 # Caio Data
 
-Central estática de projetos, ferramentas e bases de conhecimento, pronta para GitHub Pages.
+Central estática de projetos, ferramentas e bases de conhecimento de Caio César.
 
-## Publicar
+**Site publicado:** <https://caio-csar.github.io/Caio-Data/>
 
-1. Crie o repositório `caio-csar/Caio-Data` no GitHub.
-2. Envie os arquivos deste projeto mantendo `index.html` na raiz.
-3. No repositório, abra **Settings > Pages**.
-4. Em **Build and deployment**, escolha **Deploy from a branch**.
-5. Selecione a branch **main**, a pasta **/(root)** e salve.
-6. Após a publicação, acesse `https://caio-csar.github.io/Caio-Data/`.
+## Recursos
 
-## Atualizar acessos
+- Acesso ao MaxDeck, NEXUS, Guia Manager e à release mais recente do MaxHub.
+- Bases NotebookLM do BD Manager 152 e 151.
+- Pesquisa rápida com normalização de acentos.
+- Cópia do comando NEXUS com um clique.
+- Interface responsiva e acessível.
 
-Os links ficam no arquivo `index.html`. O comando copiado pelo card NEXUS também aparece no elemento `#nexus-command` desse arquivo e na constante `NEXUS_COMMAND` de `script.js`; mantenha os dois valores iguais.
+## Tecnologias
 
-## Testar localmente
+HTML5, CSS3 e JavaScript puro. O site não possui backend, framework ou build de produção. Node.js e Playwright são usados apenas para testes.
 
-Com Node.js instalado:
+## Estrutura
+
+```text
+Caio-Data/
+├── AGENTS.md
+├── CHANGELOG.md
+├── index.html
+├── styles.css
+├── script.js
+├── assets/previews/
+├── tests/
+└── docs/
+```
+
+## Começar em outro computador
 
 ```bash
-npm install
+git clone https://github.com/caio-csar/Caio-Data.git
+cd Caio-Data
+npm ci
 npm test
 npm run serve
 ```
 
-Depois, abra `http://127.0.0.1:4173`.
+Abra <http://127.0.0.1:4173/>.
 
-Para executar também os testes de navegador em desktop e celular:
+Para os testes de navegador:
 
 ```bash
 npx playwright install chromium
 npm run test:e2e
 ```
+
+## Publicar
+
+O GitHub Pages deve usar **Settings > Pages > Deploy from a branch > main > /(root)**. Cada push validado na `main` atualiza <https://caio-csar.github.io/Caio-Data/>.
+
+## Documentação
+
+- [Instruções para agentes](AGENTS.md)
+- [Contexto e requisitos](docs/PROJECT_CONTEXT.md)
+- [Arquitetura](docs/ARCHITECTURE.md)
+- [Manutenção](docs/MAINTENANCE.md)
+- [Implantação](docs/DEPLOYMENT.md)
+- [Continuidade em outro computador](docs/HANDOFF.md)
+- [Especificações](docs/superpowers/specs/)
+- [Planos de implementação](docs/superpowers/plans/)
+- [Histórico de alterações](CHANGELOG.md)
+
+## Alterações importantes
+
+Os links ficam em `index.html`. O comando NEXUS também aparece na constante `NEXUS_COMMAND` de `script.js`; mantenha os dois valores iguais. Antes de modificar conteúdo ou comportamento, leia `AGENTS.md`.

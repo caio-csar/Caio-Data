@@ -1,0 +1,14 @@
+{
+  "name": "caio-data",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Central de projetos, ferramentas e bases de conhecimento.",
+  "scripts": {
+    "serve": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "test": "node --test tests/static.test.js",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+}
