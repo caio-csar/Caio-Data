@@ -131,6 +131,81 @@
       });
     });
 
+
+    // Easter egg isolado: um clique no nome libera uma mosca por até 30 segundos.
+    let activeFly = null;
+    let flyFrame = 0;
+    let flyExpiry = 0;
+    let toastTimer = 0;
+    function releaseFly(event) {
+      if (event?.type === 'keydown' && !['Enter', ' '].includes(event.key)) return;
+      event?.preventDefault();
+      if (activeFly) return;
+      window.clearTimeout(toastTimer);
+      document.querySelector('.fly-toast')?.remove();
+      const fly = document.createElement('button');
+      fly.type = 'button';
+      fly.className = 'fly-easteregg';
+      fly.textContent = '🪰';
+      fly.setAttribute('aria-label', 'Capturar mosca');
+      fly.title = 'Pegue a mosca!';
+      document.body.appendChild(fly);
+      activeFly = fly;
+      let x = Math.max(4, window.innerWidth * .55);
+      let y = Math.max(4, window.innerHeight * .35);
+      let vx = 2.1, vy = 1.45, last = 0;
+      const born = performance.now();
+      function clearFly() {
+        cancelAnimationFrame(flyFrame);
+        clearTimeout(flyExpiry);
+        fly.remove();
+        activeFly = null;
+      }
+      fly.addEventListener('click', (e) => {
+        e.stopPropagation();
+        clearFly();
+        const toast = document.createElement('div');
+        toast.className = 'fly-toast';
+        toast.setAttribute('role', 'status');
+        toast.innerHTML = '🪰 Vai trabalhar, moss! 😂<small>Easter egg encontrado!</small>';
+        document.body.appendChild(toast);
+        toastTimer = setTimeout(() => toast.remove(), 4500);
+      });
+      function move(now) {
+        if (!activeFly) return;
+        const dt = Math.min((now - (last || now)) / 16.67, 2);
+        last = now;
+        const maxX = Math.max(0, innerWidth - 50), maxY = Math.max(0, innerHeight - 50);
+        if (Math.random() < .035) { vx += (Math.random() - .5) * 2.5; vy += (Math.random() - .5) * 2.5; }
+        const clamp = (v) => Math.sign(v || 1) * Math.max(1.2, Math.min(Math.abs(v), 4));
+        vx = clamp(vx); vy = clamp(vy);
+        x += vx * dt; y += vy * dt;
+        if (x <= 0 || x >= maxX) { vx = -vx; x = Math.max(0, Math.min(maxX, x)); }
+        if (y <= 0 || y >= maxY) { vy = -vy; y = Math.max(0, Math.min(maxY, y)); }
+        fly.style.left = x + 'px';
+        fly.style.top = y + 'px';
+        fly.style.transform = 'rotate(' + (Math.sin((now - born) / 80) * 13) + 'deg)';
+        flyFrame = requestAnimationFrame(move);
+      }
+      const dodge = (e) => {
+        if (!activeFly || e.pointerType === 'touch') return;
+        const dx = x + 23 - e.clientX, dy = y + 23 - e.clientY;
+        const d = Math.hypot(dx, dy);
+        if (d > 15 && d < 85) { vx += (dx / d) * .65; vy += (dy / d) * .65; }
+      };
+      document.addEventListener('pointermove', dodge, { passive: true });
+      const originalClear = clearFly;
+      function finish() { document.removeEventListener('pointermove', dodge); originalClear(); }
+      // Replace expiry/click cleanup with listener-aware cleanup.
+      fly.addEventListener('click', () => document.removeEventListener('pointermove', dodge), { once: true });
+      flyExpiry = window.setTimeout(finish, 30000);
+      flyFrame = requestAnimationFrame(move);
+    }
+    document.querySelectorAll('.brand-small, .brand-large').forEach((brand) => {
+      brand.addEventListener('click', releaseFly);
+      if (brand.matches('[role="button"]')) brand.addEventListener('keydown', releaseFly);
+    });
+
     return { filterCards, copyNexusCommand };
   }
 
