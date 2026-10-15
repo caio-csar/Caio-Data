@@ -1164,3 +1164,18 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* Identidade neutra e easter egg da mosca */
+.brand { text-transform: none; letter-spacing: -0.045em; line-height: 1.1; }
+.brand-panel { color: var(--brand-blue); }
+.brand-data { color: var(--data); }
+.brand-small { font-size: clamp(1rem, 1.6vw, 1.45rem); white-space: nowrap; }
+.brand-large { font-size: clamp(2.2rem, 4.5vw, 4.7rem); cursor: pointer; }
+.brand-small { cursor: pointer; }
+.brand-large:hover .brand-data, .brand-small:hover .brand-data { color: #fff; }
+.fly-easteregg { position: fixed; z-index: 200; width: 46px; height: 46px; display: grid; place-items: center; padding: 0; background: transparent; font-size: 31px; cursor: pointer; border: 0; transform-origin: center; user-select: none; filter: drop-shadow(0 3px 3px #0009); touch-action: manipulation; }
+.fly-easteregg:hover { filter: drop-shadow(0 0 8px #8fc2ff); }
+.fly-toast { position: fixed; z-index: 210; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(90vw, 410px); padding: 30px 22px; color: #fff; background: #151a22; border: 1px solid #4477b4; border-radius: 18px; box-shadow: 0 22px 100px #000b; text-align: center; font-size: clamp(1.25rem, 5vw, 1.8rem); font-weight: 800; }
+.fly-toast small { display: block; margin-top: 12px; color: #a9b0bd; font-size: .8rem; font-weight: 400; }
+@media(max-width: 720px) { .brand-small { font-size: 1rem; } }
