@@ -38,6 +38,8 @@
 
   function initializeSite() {
     const cards = Array.from(document.querySelectorAll('[data-project-card]'));
+    const resourceCount = document.querySelector('#resource-count');
+    if (resourceCount) resourceCount.textContent = `${cards.length} ${cards.length === 1 ? 'recurso' : 'recursos'}`;
     const search = document.querySelector('#project-search');
     const emptyState = document.querySelector('#empty-state');
     const projectSection = document.querySelector('#projetos');
