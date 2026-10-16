@@ -1180,13 +1180,18 @@ button {
 .fly-toast small { display: block; margin-top: 12px; color: #a9b0bd; font-size: .8rem; font-weight: 400; }
 @media(max-width: 720px) { .brand-small { font-size: 1rem; } }
 
-/* Modelos compactos no cabeçalho dos projetos; não afetam o hero. */
-.hero { grid-template-columns: minmax(0, 1fr); gap: 0; }
-.section-heading { flex-wrap: wrap; }
-.request-tools { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:8px; margin-left:auto; }
-.request-label { color:var(--subtle); font-size:.72rem; font-weight:700; margin-right:3px; white-space:nowrap; }
-.request-copy { display:inline-flex; width:auto; min-height:34px; align-items:center; justify-content:center; gap:10px; padding:6px 10px; color:#dfe7f1; background:#1b222c; border:1px solid #3c4655; border-radius:7px; font-size:.72rem; font-weight:700; cursor:pointer; white-space:nowrap; transition:background 160ms,border-color 160ms; }
-.request-copy:hover { background:#253042; border-color:#5285be; }
+/* Solicitações formais: minicards expansíveis e responsivos. */
+.hero { grid-template-columns:minmax(0,1fr); gap:0; }
+.section-heading { flex-wrap:wrap; align-items:center; }
+.request-tools { min-width:0; flex:1 1 480px; display:flex; align-items:center; justify-content:flex-end; gap:12px; margin-left:auto; }
+.request-label { color:#c7ced8; font-size:.68rem; font-weight:800; letter-spacing:.11em; white-space:nowrap; }
+.request-list { min-width:0; display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px; }
+.request-item { display:inline-flex; align-items:center; min-height:35px; gap:10px; padding:4px 5px 4px 10px; color:#dfe5ee; background:#151a22; border:1px solid #38414d; border-radius:8px; font-size:.73rem; font-weight:650; }
+.request-document { display:inline-flex; gap:7px; align-items:center; white-space:nowrap; }
+.request-document > span { color:#95a6ba; font-size:.85rem; }
+.request-copy { display:grid; place-items:center; width:25px; height:25px; padding:0; flex:none; color:#b8c4d3; background:#242b36; border:1px solid #424c5c; border-radius:5px; cursor:pointer; font-size:.83rem; transition:background 160ms,border-color 160ms; }
+.request-copy:hover { background:#303c4d; border-color:#6689ad; }
 .request-copy:focus-visible { outline:2px solid var(--brand-blue); outline-offset:2px; }
 .request-copy.is-copied { border-color:#4baf8b; color:#b3f4cf; }
-@media(max-width:760px) { .request-tools { width:100%; margin-left:0; justify-content:flex-start; } .request-label { width:100%; } .request-copy { flex:1; white-space:normal; } }
+@media(max-width:1000px) { .request-tools { flex-basis:100%; margin-left:0; justify-content:flex-start; flex-wrap:wrap; } .request-list { justify-content:flex-start; } }
+@media(max-width:600px) { .request-tools { gap:8px; } .request-label { width:100%; } .request-item { max-width:100%; } .request-document { white-space:normal; } }
