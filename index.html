@@ -52,11 +52,13 @@
           <p class="section-kicker">Projetos e ferramentas</p>
           <h2 id="projects-title">Projetos</h2>
         </div>
-        <div class="request-tools" aria-label="Modelos para clientes">
-          <span class="request-label">Modelos para clientes</span>
-          <button class="request-copy" type="button" data-copy-template="regime" title="Copiar modelo de alteração de regime">Alteração de regime <span aria-hidden="true">▣</span></button>
-          <button class="request-copy" type="button" data-copy-template="estoque" title="Copiar modelo para zerar estoque">Zerar estoque <span aria-hidden="true">▣</span></button>
-          <span class="sr-only request-copy-status" id="request-copy-status" aria-live="polite"></span>
+        <div class="request-tools" aria-label="Solicitações formais">
+          <span class="request-label">SOLICITAÇÕES FORMAIS</span>
+          <div class="request-list">
+            <div class="request-item"><span class="request-document"><span aria-hidden="true">▤</span> Alteração de regime</span><button class="request-copy" type="button" data-copy-template="regime" aria-label="Copiar alteração de regime" title="Copiar modelo">▣</button></div>
+            <div class="request-item"><span class="request-document"><span aria-hidden="true">▤</span> Zerar saldo de estoque</span><button class="request-copy" type="button" data-copy-template="estoque" aria-label="Copiar modelo para zerar saldo de estoque" title="Copiar modelo">▣</button></div>
+          </div>
+          <span class="sr-only request-copy-status" id="request-copy-status" role="status" aria-live="polite"></span>
         </div>
         <span class="section-count">4 projetos</span>
       </div>
