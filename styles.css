@@ -1180,12 +1180,13 @@ button {
 .fly-toast small { display: block; margin-top: 12px; color: #a9b0bd; font-size: .8rem; font-weight: 400; }
 @media(max-width: 720px) { .brand-small { font-size: 1rem; } }
 
-/* Modelos de solicitação para os clientes */
-.request-tools { display: flex; flex-direction: column; gap: 10px; padding: 19px; background: linear-gradient(135deg,#12161d,#0d1015); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); }
-.request-label { margin: 0; color: var(--text); font-weight: 800; font-size: .89rem; }
-.request-caption { margin: 0 0 4px; color: var(--muted); font-size: .77rem; line-height: 1.45; }
-.request-copy { display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; min-height:43px; padding:10px 13px; color:#e6edf5; background:#1b222c; border:1px solid #3c4655; border-radius:8px; font-size:.78rem; font-weight:700; cursor:pointer; text-align:left; transition:background 160ms,border-color 160ms; }
+/* Modelos compactos no cabeçalho dos projetos; não afetam o hero. */
+.hero { grid-template-columns: minmax(0, 1fr); gap: 0; }
+.section-heading { flex-wrap: wrap; }
+.request-tools { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:8px; margin-left:auto; }
+.request-label { color:var(--subtle); font-size:.72rem; font-weight:700; margin-right:3px; white-space:nowrap; }
+.request-copy { display:inline-flex; width:auto; min-height:34px; align-items:center; justify-content:center; gap:10px; padding:6px 10px; color:#dfe7f1; background:#1b222c; border:1px solid #3c4655; border-radius:7px; font-size:.72rem; font-weight:700; cursor:pointer; white-space:nowrap; transition:background 160ms,border-color 160ms; }
 .request-copy:hover { background:#253042; border-color:#5285be; }
 .request-copy:focus-visible { outline:2px solid var(--brand-blue); outline-offset:2px; }
-.request-copy-status { color:var(--subtle); font-size:.7rem; }
 .request-copy.is-copied { border-color:#4baf8b; color:#b3f4cf; }
+@media(max-width:760px) { .request-tools { width:100%; margin-left:0; justify-content:flex-start; } .request-label { width:100%; } .request-copy { flex:1; white-space:normal; } }
