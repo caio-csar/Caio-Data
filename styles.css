@@ -1179,3 +1179,13 @@ button {
 .fly-toast { position: fixed; z-index: 210; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(90vw, 410px); padding: 30px 22px; color: #fff; background: #151a22; border: 1px solid #4477b4; border-radius: 18px; box-shadow: 0 22px 100px #000b; text-align: center; font-size: clamp(1.25rem, 5vw, 1.8rem); font-weight: 800; }
 .fly-toast small { display: block; margin-top: 12px; color: #a9b0bd; font-size: .8rem; font-weight: 400; }
 @media(max-width: 720px) { .brand-small { font-size: 1rem; } }
+
+/* Modelos de solicitação para os clientes */
+.request-tools { display: flex; flex-direction: column; gap: 10px; padding: 19px; background: linear-gradient(135deg,#12161d,#0d1015); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); }
+.request-label { margin: 0; color: var(--text); font-weight: 800; font-size: .89rem; }
+.request-caption { margin: 0 0 4px; color: var(--muted); font-size: .77rem; line-height: 1.45; }
+.request-copy { display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; min-height:43px; padding:10px 13px; color:#e6edf5; background:#1b222c; border:1px solid #3c4655; border-radius:8px; font-size:.78rem; font-weight:700; cursor:pointer; text-align:left; transition:background 160ms,border-color 160ms; }
+.request-copy:hover { background:#253042; border-color:#5285be; }
+.request-copy:focus-visible { outline:2px solid var(--brand-blue); outline-offset:2px; }
+.request-copy-status { color:var(--subtle); font-size:.7rem; }
+.request-copy.is-copied { border-color:#4baf8b; color:#b3f4cf; }
