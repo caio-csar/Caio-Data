@@ -135,21 +135,21 @@
 
     // Orientações copiáveis para solicitações formais.
     const requestTemplates = {
-      regime: `Para solicitar a alteração do regime de apuração da empresa, é necessário encaminhar um e-mail formal para theneds@maxdata.com.br, utilizando o modelo abaixo e preenchendo os dados solicitados.
+      regime: `Para solicitar a alteração do regime de apuração da empresa, é necessário encaminhar um e-mail para theneds@maxdata.com.br, utilizando o modelo abaixo e preenchendo os dados solicitados.
 
 *Assunto: SOLICITAÇÃO DE ALTERAÇÃO DE REGIME*
 
-Eu, [NOME], Telefone/WhatsApp: (00) 00000-0000, [CARGO/FUNÇÃO] da empresa [RAZÃO SOCIAL], CNPJ 00.000.000/0000-0, solicito a alteração do regime de apuração da empresa de [regime atual] para [regime pretendido], com vigência a partir de [dd/mm/aaaa].
+Eu, [ *NOME* ], Telefone/WhatsApp: *(00) 00000-0000* , [ *CARGO/FUNÇÃO*] da empresa [ *RAZÃO SOCIAL*] , CNPJ *00.000.000/0000-0* , solicito a alteração do regime de apuração da empresa de [ *regime atual* ] para [*regime pretendido*] , com vigência a partir de [dd/mm/aaaa].
 Motivo da mudança: [descrever brevemente o motivo].
-Informo que o contato responsável pela contabilidade é: [NOME DA CONTABILIDADE/ESCRITÓRIO], [RESPONSÁVEL], Telefone/WhatsApp: (00) 00000-0000 e E-mail: email@email.com.br.
+Informo que o contato responsável pela contabilidade é: *[NOME DA CONTABILIDADE/ESCRITÓRIO], [RESPONSÁVEL], Telefone/WhatsApp: (00) 00000-0000 e E-mail: email@email.com.br.*
 Assumo a veracidade das informações prestadas e autorizo o tratamento/regularização junto à contabilidade.`,
-      estoque: `Para solicitar que o saldo de estoque de todos os produtos seja zerado, é necessário encaminhar um e-mail formal para theneds@maxdata.com.br, utilizando o modelo abaixo e preenchendo os dados solicitados.
+      estoque: `Para solicitar que o saldo de estoque de todos os produtos seja zerado, é necessário encaminhar um e-mail para theneds@maxdata.com.br, utilizando o modelo abaixo e preenchendo os dados solicitados.
 
 *Assunto: SOLICITAÇÃO: ZERAR SALDO DE ESTOQUE*
 
-Eu, [NOME], Telefone/WhatsApp: (00) 00000-0000, [CARGO/FUNÇÃO] da empresa [RAZÃO SOCIAL], CNPJ 00.000.000/0000-0, solicito que seja *ZERADO* o saldo de estoque de todos os meus produtos.
+Eu, [ *NOME* ], Telefone/WhatsApp: *(00) 00000-0000* , [ *CARGO/FUNÇÃO*] da empresa [ *RAZÃO SOCIAL*] , CNPJ *00.000.000/0000-0* , solicito que seja *ZERADO* o saldo de estoque de todos os meus produtos.
 Motivo da mudança: [descrever brevemente o motivo].
-Informo que o contato responsável pela contabilidade é: [NOME DA CONTABILIDADE/ESCRITÓRIO], [RESPONSÁVEL], Telefone/WhatsApp: (00) 00000-0000 e E-mail: email@email.com.br.
+Informo que o contato responsável pela contabilidade é: *[NOME DA CONTABILIDADE/ESCRITÓRIO], [RESPONSÁVEL], Telefone/WhatsApp: (00) 00000-0000 e E-mail: email@email.com.br.*
 Assumo a veracidade das informações prestadas e autorizo a manutenção.`
     };
 
