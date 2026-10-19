@@ -171,28 +171,64 @@ Declaro estar ciente de que alterações realizadas diretamente no banco de dado
 *IMPORTANTE:* A solicitação estará sujeita à análise de viabilidade técnica. O envio deste e-mail não garante a execução do procedimento.`
     };
 
-    const requestCopyStatus = document.querySelector('#request-copy-status');
-    document.querySelectorAll('[data-copy-template]').forEach((button) => {
-      button.addEventListener('click', async () => {
-        const message = requestTemplates[button.dataset.copyTemplate];
-        if (!message) return;
-        let copied = false;
-        try {
-          if (navigator.clipboard?.writeText) {
-            await navigator.clipboard.writeText(message);
-            copied = true;
-          } else {
-            copied = legacyCopy(message);
-          }
-        } catch (_error) {
-          copied = legacyCopy(message);
-        }
-        if (requestCopyStatus) requestCopyStatus.textContent = copied ? 'Modelo copiado! Cole na conversa com o cliente.' : 'Não foi possível copiar. Verifique as permissões do navegador.';
-        if (copied) {
-          button.classList.add('is-copied');
-          setTimeout(() => button.classList.remove('is-copied'), 2000);
+    // Prévia visual formatada; cópia usa exclusivamente o texto original.
+    const requestDialog = document.querySelector('#request-dialog');
+    const requestPreview = document.querySelector('#request-preview');
+    const requestTitle = document.querySelector('#request-dialog-title');
+    const requestStatus = document.querySelector('#request-dialog-status');
+    const requestCopy = document.querySelector('#request-dialog-copy');
+    const requestClose = document.querySelector('#request-dialog-close');
+    const requestNames = { regime: 'Alteração de regime', estoque: 'Zerar saldo de estoque', massa: 'Alteração em massa via banco de dados' };
+    let selectedRequest = '';
+    let previousFocus = null;
+    function showFormattedRequest(message) {
+      requestPreview.replaceChildren();
+      const pieces = message.split(/(\\*[^*\\n]+\\*)/g);
+      pieces.forEach((piece) => {
+        if (!piece) return;
+        if (piece.startsWith('*') && piece.endsWith('*') && piece.length > 2) {
+          const strong = document.createElement('strong');
+          strong.textContent = piece.slice(1, -1);
+          requestPreview.appendChild(strong);
+        } else {
+          requestPreview.appendChild(document.createTextNode(piece));
         }
       });
+    }
+    document.querySelectorAll('[data-preview-template]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const key = button.dataset.previewTemplate;
+        if (!requestTemplates[key] || !requestDialog) return;
+        selectedRequest = key;
+        previousFocus = document.activeElement;
+        requestTitle.textContent = requestNames[key] || 'Prévia da solicitação';
+        showFormattedRequest(requestTemplates[key]);
+        requestStatus.textContent = '';
+        requestCopy.textContent = '▣ Copiar mensagem';
+        requestDialog.showModal();
+      });
+    });
+    requestClose?.addEventListener('click', () => requestDialog.close());
+    requestDialog?.addEventListener('click', (event) => {
+      if (event.target === requestDialog) requestDialog.close();
+    });
+    requestDialog?.addEventListener('close', () => previousFocus?.focus());
+    requestCopy?.addEventListener('click', async () => {
+      const message = requestTemplates[selectedRequest];
+      if (!message) return;
+      let copied = false;
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(message);
+          copied = true;
+        } else {
+          copied = legacyCopy(message);
+        }
+      } catch (_error) {
+        copied = legacyCopy(message);
+      }
+      requestStatus.textContent = copied ? 'Mensagem copiada com formatação para WhatsApp.' : 'Não foi possível copiar. Verifique as permissões.';
+      if (copied) requestCopy.textContent = '✓ Copiado!';
     });
 
     // Easter egg isolado: um clique no nome libera uma mosca por até 30 segundos.
