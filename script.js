@@ -183,15 +183,18 @@ Declaro estar ciente de que alterações realizadas diretamente no banco de dado
     let previousFocus = null;
     function showFormattedRequest(message) {
       requestPreview.replaceChildren();
-      const pieces = message.split(/(\\*[^*\\n]+\\*)/g);
-      pieces.forEach((piece) => {
-        if (!piece) return;
-        if (piece.startsWith('*') && piece.endsWith('*') && piece.length > 2) {
+      // Os asteriscos delimitam negrito apenas na prévia; não são exibidos.
+      // A ação de copiar continua usando requestTemplates[selectedRequest] sem alterações.
+      const parts = message.split('*');
+      parts.forEach((part, index) => {
+        if (!part) return;
+        const isBold = index % 2 === 1 && index < parts.length - 1;
+        if (isBold) {
           const strong = document.createElement('strong');
-          strong.textContent = piece.slice(1, -1);
+          strong.textContent = part;
           requestPreview.appendChild(strong);
         } else {
-          requestPreview.appendChild(document.createTextNode(piece));
+          requestPreview.appendChild(document.createTextNode(part));
         }
       });
     }
