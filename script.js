@@ -152,13 +152,12 @@ Assumo a veracidade das informações prestadas e autorizo o tratamento/regulari
 Eu, [ *NOME* ], Telefone/WhatsApp: *(00) 00000-0000* , [ *CARGO/FUNÇÃO*] da empresa [ *RAZÃO SOCIAL*] , CNPJ *00.000.000/0000-0* , solicito que seja *ZERADO* o saldo de estoque de todos os meus produtos.
 Motivo da mudança: [descrever brevemente o motivo].
 Informo que o contato responsável pela contabilidade é: *[NOME DA CONTABILIDADE/ESCRITÓRIO], [RESPONSÁVEL], Telefone/WhatsApp: (00) 00000-0000 e E-mail: email@email.com.br.*
-Assumo a veracidade das informações prestadas e autorizo a manutenção.`
-    ,
+Assumo a veracidade das informações prestadas e autorizo a manutenção.`,
       massa: `Para solicitar uma alteração em massa via banco de dados, é necessário encaminhar um e-mail para theneds@maxdata.com.br, utilizando o modelo abaixo e preenchendo os dados solicitados.
 
 *Assunto: SOLICITAÇÃO: ALTERAÇÃO EM MASSA VIA BANCO DE DADOS*
 
-Eu, *[NOME COMPLETO]*, Telefone/WhatsApp: *(00) 00000-0000*, *[CARGO/FUNÇÃO]* da empresa *[RAZÃO SOCIAL]*, CNPJ *00.000.000/0000-00*, solicito a realização de uma *ALTERAÇÃO EM MASSA VIA BANCO DE DADOS*, conforme os dados abaixo.
+Eu, *[NOME COMPLETO]*, Telefone/WhatsApp: *(00) 00000-0000*, *[CARGO/FUNÇÃO]* da empresa *[RAZÃO SOCIAL]*, CNPJ *00.000.000/0000-0*, solicito a realização de uma *ALTERAÇÃO EM MASSA VIA BANCO DE DADOS*, conforme os dados abaixo.
 
 *Tipo de alteração:* [Descrever o procedimento solicitado. Ex.: cancelamento de Ordens de Serviço.]
 *Quantidade de registros:* [Informar a quantidade total de registros envolvidos.]
