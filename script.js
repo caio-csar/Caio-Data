@@ -153,6 +153,23 @@ Eu, [ *NOME* ], Telefone/WhatsApp: *(00) 00000-0000* , [ *CARGO/FUNÇÃO*] da em
 Motivo da mudança: [descrever brevemente o motivo].
 Informo que o contato responsável pela contabilidade é: *[NOME DA CONTABILIDADE/ESCRITÓRIO], [RESPONSÁVEL], Telefone/WhatsApp: (00) 00000-0000 e E-mail: email@email.com.br.*
 Assumo a veracidade das informações prestadas e autorizo a manutenção.`
+    ,
+      massa: `Para solicitar uma alteração em massa via banco de dados, é necessário encaminhar um e-mail para theneds@maxdata.com.br, utilizando o modelo abaixo e preenchendo os dados solicitados.
+
+*Assunto: SOLICITAÇÃO: ALTERAÇÃO EM MASSA VIA BANCO DE DADOS*
+
+Eu, *[NOME COMPLETO]*, Telefone/WhatsApp: *(00) 00000-0000*, *[CARGO/FUNÇÃO]* da empresa *[RAZÃO SOCIAL]*, CNPJ *00.000.000/0000-00*, solicito a realização de uma *ALTERAÇÃO EM MASSA VIA BANCO DE DADOS*, conforme os dados abaixo.
+
+*Tipo de alteração:* [Descrever o procedimento solicitado. Ex.: cancelamento de Ordens de Serviço.]
+*Quantidade de registros:* [Informar a quantidade total de registros envolvidos.]
+*Justificativa:* [Descrever o motivo da solicitação e a necessidade da alteração em massa.]
+*Resultado esperado:* [Descrever como os registros deverão ficar após o procedimento.]
+
+Declaro estar ciente de que alterações realizadas diretamente no banco de dados podem impactar informações e processos do sistema.
+
+*Assumo a responsabilidade pela solicitação, confirmo a veracidade das informações prestadas e autorizo a realização do procedimento, mediante análise e aprovação técnica.*
+
+*IMPORTANTE:* A solicitação estará sujeita à análise de viabilidade técnica. O envio deste e-mail não garante a execução do procedimento.`
     };
 
     const requestCopyStatus = document.querySelector('#request-copy-status');
