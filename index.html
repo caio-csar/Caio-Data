@@ -55,9 +55,9 @@
         <div class="request-tools" aria-label="Solicitações formais">
           <span class="request-label">SOLICITAÇÕES FORMAIS</span>
           <div class="request-list">
-            <div class="request-item"><span class="request-document"><span aria-hidden="true">▤</span> Alteração de regime</span><button class="request-copy" type="button" data-copy-template="regime" aria-label="Copiar alteração de regime" title="Copiar modelo">▣</button></div>
-            <div class="request-item"><span class="request-document"><span aria-hidden="true">▤</span> Zerar saldo de estoque</span><button class="request-copy" type="button" data-copy-template="estoque" aria-label="Copiar modelo para zerar saldo de estoque" title="Copiar modelo">▣</button></div>
-            <div class="request-item"><span class="request-document"><span aria-hidden="true">▤</span> Alteração em massa (BD)</span><button class="request-copy" type="button" data-copy-template="massa" aria-label="Copiar modelo de alteração em massa via banco de dados" title="Copiar modelo">▣</button></div>
+            <button class="request-item request-open" type="button" data-preview-template="regime" aria-haspopup="dialog"><span class="request-document"><span aria-hidden="true">▤</span> Alteração de regime</span><span class="request-arrow" aria-hidden="true">↗</span></button>
+            <button class="request-item request-open" type="button" data-preview-template="estoque" aria-haspopup="dialog"><span class="request-document"><span aria-hidden="true">▤</span> Zerar saldo de estoque</span><span class="request-arrow" aria-hidden="true">↗</span></button>
+            <button class="request-item request-open" type="button" data-preview-template="massa" aria-haspopup="dialog"><span class="request-document"><span aria-hidden="true">▤</span> Alteração em massa (BD)</span><span class="request-arrow" aria-hidden="true">↗</span></button>
           </div>
           <span class="sr-only request-copy-status" id="request-copy-status" role="status" aria-live="polite"></span>
         </div>
@@ -193,6 +193,11 @@ PRINCIPAL
     <p id="empty-state" class="empty-state" role="status" aria-live="polite" hidden>Nenhum projeto encontrado para essa busca.</p>
   </main>
 
+  <dialog id="request-dialog" class="request-dialog" aria-labelledby="request-dialog-title">
+    <header class="request-dialog-head"><div><p class="request-dialog-kicker">SOLICITAÇÕES FORMAIS</p><h2 id="request-dialog-title">Prévia da solicitação</h2></div><button id="request-dialog-close" class="request-dialog-close" type="button" aria-label="Fechar">×</button></header>
+    <div id="request-preview" class="request-preview"></div>
+    <footer class="request-dialog-actions"><span id="request-dialog-status" role="status" aria-live="polite"></span><button id="request-dialog-copy" type="button" class="request-dialog-copy">▣ Copiar mensagem</button></footer>
+  </dialog>
   <footer class="page-footer">
     <span>Desenvolvido por <b>Caio César</b></span>
     <small>Consulta • Automação • Dados</small>
