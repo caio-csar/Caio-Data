@@ -1213,3 +1213,14 @@ button {
 .request-dialog-copy { padding:10px 15px; margin-left:auto; white-space:nowrap; color:#fff; background:#bd1027; border:1px solid #e02540; border-radius:8px; cursor:pointer; font-size:.78rem; font-weight:800; }
 .request-dialog-copy:hover { background:#d61632; }
 @media(max-width:480px) { .request-dialog-head,.request-dialog-actions { padding:14px; } .request-preview { padding:16px 14px; font-size:.82rem; } }
+
+/* Prévia em estilo documento: fundo branco, tipografia escura e negrito real. */
+.request-dialog { background:#ffffff; color:#20252d; border-color:#cfd5dc; }
+.request-dialog-head { border-bottom-color:#e0e4e9; }
+.request-dialog-head h2 { color:#1d2733; }
+.request-dialog-kicker { color:#496d99; }
+.request-dialog-close { color:#374151; background:#f0f2f5; }
+.request-preview { background:#ffffff; color:#27313d; }
+.request-preview strong { color:#131922; font-weight:750; }
+.request-dialog-actions { border-top-color:#e0e4e9; background:#f9fafb; }
+.request-dialog-actions [role="status"] { color:#276749; }
