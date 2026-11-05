@@ -99,44 +99,90 @@
       </div>
     </section>
 
-    <section id="conhecimento" class="content-section" aria-labelledby="knowledge-title">
-      <div class="section-heading">
-        <div class="section-heading-text">
-          <p class="section-kicker">CONSULTA E REFERÊNCIA</p>
-          <h2 id="knowledge-title">Bases de conhecimento</h2>
-          <p class="section-description">Informações técnicas do Manager organizadas para consulta.</p>
+    <div class="lower-workspace">
+      <section id="conhecimento" class="content-section resource-pane knowledge-pane" aria-labelledby="knowledge-title">
+        <div class="section-heading">
+          <div class="section-heading-text">
+            <p class="section-kicker">CONSULTA E REFERÊNCIA</p>
+            <h2 id="knowledge-title">Bases técnicas</h2>
+            <p class="section-description">SQL, scripts e diagnósticos do Manager.</p>
+          </div>
+          <span class="section-count" id="knowledge-count">2 bases</span>
         </div>
-        <span class="section-count" id="knowledge-count">2 bases</span>
-      </div>
-      <div class="knowledge-grid">
-        <a class="knowledge-card knowledge-link" data-knowledge-card href="https://notebook.google.com/notebook/86d68261-51e9-4b08-934c-adb2e6ce59ad" target="_blank" rel="noopener noreferrer" aria-label="Abrir NotebookLM Nova em nova aba">
-          <div class="knowledge-icon" aria-hidden="true">▤</div>
-          <div class="knowledge-copy"><h3>NotebookLM — Nova</h3><p>Base atualizada • BD Manager 152</p></div>
-          <span class="knowledge-pill">Atualizada</span><span class="card-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a class="knowledge-card knowledge-link" data-knowledge-card href="https://notebook.google.com/notebook/5c394b0f-8550-4e8c-aef2-895afd612ac9" target="_blank" rel="noopener noreferrer" aria-label="Abrir NotebookLM Antiga em nova aba">
-          <div class="knowledge-icon knowledge-icon-muted" aria-hidden="true">▤</div>
-          <div class="knowledge-copy"><h3>NotebookLM — Antiga</h3><p>Base histórica • BD Manager 151</p></div>
-          <span class="knowledge-pill knowledge-pill-muted">Histórica</span><span class="card-arrow" aria-hidden="true">↗</span>
-        </a>
-      </div>
-    </section>
 
-    <section id="solicitacoes" class="request-section" aria-label="Solicitações formais">
-      <details id="request-details" class="request-details">
-        <summary class="request-summary">
-          <span class="request-summary-icon" aria-hidden="true">▤</span>
-          <span class="request-summary-text"><strong>Solicitações formais</strong><small>Modelos de e-mail para solicitações técnicas</small></span>
-          <span id="request-count" class="request-count">3 modelos</span>
-          <span class="request-chevron" aria-hidden="true">⌄</span>
-        </summary>
-        <div class="request-list">
-          <button class="request-item" type="button" data-preview-template="regime" aria-haspopup="dialog"><span aria-hidden="true">▤</span> Alteração de regime <span class="request-item-arrow" aria-hidden="true">↗</span></button>
-          <button class="request-item" type="button" data-preview-template="estoque" aria-haspopup="dialog"><span aria-hidden="true">▤</span> Zerar saldo de estoque <span class="request-item-arrow" aria-hidden="true">↗</span></button>
-          <button class="request-item" type="button" data-preview-template="massa" aria-haspopup="dialog"><span aria-hidden="true">▤</span> Alteração em massa (BD) <span class="request-item-arrow" aria-hidden="true">↗</span></button>
+        <div class="knowledge-grid">
+          <a class="knowledge-card knowledge-card--current knowledge-link" data-knowledge-card href="https://notebook.google.com/notebook/86d68261-51e9-4b08-934c-adb2e6ce59ad" target="_blank" rel="noopener noreferrer" aria-label="Abrir base técnica NotebookLM Manager 152 em nova aba">
+            <div class="knowledge-main">
+              <span class="notebook-mark" aria-hidden="true"><img src="assets/logos/notebooklm.svg" alt="" width="46" height="46" loading="lazy"></span>
+              <div class="knowledge-copy">
+                <span class="knowledge-status knowledge-status--current"><span class="status-dot" aria-hidden="true"></span> BASE ATUALIZADA</span>
+                <h3>NotebookLM <span class="knowledge-version">Manager 152</span></h3>
+                <p>Consultas, scripts e diagnóstico de banco de dados</p>
+              </div>
+              <span class="knowledge-link-arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="knowledge-tags">
+              <span class="knowledge-tag knowledge-tag--sql"><img src="assets/logos/sql-server.svg" width="16" height="16" alt=""> SQL Server</span>
+              <span class="knowledge-tag">Scripts DML</span>
+              <span class="knowledge-tag">Diagnósticos</span>
+              <span class="knowledge-tag knowledge-tag--max"><span class="tag-max-icon" aria-hidden="true">M</span> MaxData</span>
+            </div>
+          </a>
+
+          <a class="knowledge-card knowledge-card--historic knowledge-link" data-knowledge-card href="https://notebook.google.com/notebook/5c394b0f-8550-4e8c-aef2-895afd612ac9" target="_blank" rel="noopener noreferrer" aria-label="Abrir base técnica histórica NotebookLM Manager 151 em nova aba">
+            <div class="knowledge-main">
+              <span class="notebook-mark notebook-mark--historic" aria-hidden="true"><img src="assets/logos/notebooklm.svg" alt="" width="46" height="46" loading="lazy"></span>
+              <div class="knowledge-copy">
+                <span class="knowledge-status knowledge-status--historic"><span class="status-dot" aria-hidden="true"></span> BASE HISTÓRICA</span>
+                <h3>NotebookLM <span class="knowledge-version">Manager 151</span></h3>
+                <p>Estrutura anterior para consultas e referência</p>
+              </div>
+              <span class="knowledge-link-arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="knowledge-tags">
+              <span class="knowledge-tag knowledge-tag--historic">Consultas SQL</span>
+              <span class="knowledge-tag knowledge-tag--historic">Manager 151</span>
+              <span class="knowledge-tag knowledge-tag--historic">Documentação</span>
+            </div>
+          </a>
         </div>
-      </details>
-    </section>
+      </section>
+
+      <section id="solicitacoes" class="resource-pane docs-pane request-section" aria-label="Solicitações formais">
+        <details id="request-details" class="request-details" open>
+          <summary class="request-summary">
+            <span class="request-summary-body">
+              <span class="section-kicker">PROCESSOS E AUTORIZAÇÕES</span>
+              <strong>Solicitações formais</strong>
+              <small>Modelos para formalização de pedidos dos clientes.</small>
+            </span>
+            <span id="request-count" class="request-count">3 modelos</span>
+            <span class="request-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="request-list">
+            <button class="request-item request-item--regime" type="button" data-preview-template="regime" aria-haspopup="dialog">
+              <span class="request-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v5h4M9 12h7M9 16h6"/></svg></span>
+              <span class="request-item-body"><strong>Alteração de regime</strong><span class="request-tags"><span class="request-tag">Fiscal</span><span class="request-tag">Autorização</span></span></span>
+              <span class="request-item-arrow" aria-hidden="true">↗</span>
+            </button>
+
+            <button class="request-item request-item--estoque" type="button" data-preview-template="estoque" aria-haspopup="dialog">
+              <span class="request-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5zM3 7v10l9 5 9-5V7M12 12v10"/><path d="M8.5 9.5 17.5 4.5"/></svg></span>
+              <span class="request-item-body"><strong>Zerar saldo de estoque</strong><span class="request-tags"><span class="request-tag">Estoque</span><span class="request-tag">Confirmação</span></span></span>
+              <span class="request-item-arrow" aria-hidden="true">↗</span>
+            </button>
+
+            <button class="request-item request-item--massa" type="button" data-preview-template="massa" aria-haspopup="dialog">
+              <span class="request-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+              <span class="request-item-body"><strong>Alteração em massa (BD)</strong><span class="request-tags"><span class="request-tag">Banco de dados</span><span class="request-tag request-tag--review">Análise técnica</span></span></span>
+              <span class="request-item-arrow" aria-hidden="true">↗</span>
+            </button>
+          </div>
+          <p class="request-footnote"><span aria-hidden="true">♢</span> Formalização por e-mail para segurança e rastreabilidade.</p>
+        </details>
+      </section>
+    </div>
+
   </main>
 
   <dialog id="request-dialog" class="request-dialog" aria-labelledby="request-dialog-title">
