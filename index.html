@@ -37,30 +37,64 @@
         <span class="section-count" id="tool-count">4 ferramentas</span>
       </div>
       <div class="project-grid">
-        <a class="project-card project-link" data-tool-card href="https://caio-csar.github.io/MaxDeck/" target="_blank" rel="noopener noreferrer" aria-label="Abrir MaxDeck em nova aba">
-          <div class="card-top"><span class="tool-icon" aria-hidden="true">⌘</span><span class="card-arrow" aria-hidden="true">↗</span></div>
-          <div class="card-copy"><h2>MaxDeck</h2><p>Scripts e automações</p></div>
-          <span class="card-footnote">Ferramenta web</span>
+        <!-- MaxDeck: integração e automação -->
+        <a class="project-card project-link project-card--deck" data-tool-card href="https://caio-csar.github.io/MaxDeck/" target="_blank" rel="noopener noreferrer" aria-label="Abrir MaxDeck em nova aba">
+          <div class="card-top"><span class="card-category"><span class="category-dot"></span> AUTOMAÇÃO</span><span class="card-number">01</span></div>
+          <div class="card-copy"><h2>MaxDeck</h2><p>Scripts e automações para o suporte</p></div>
+          <div class="identity-panel" aria-label="Integrações: Tampermonkey, Max-Atendimento e TendiChat">
+            <span class="identity-label">ECOSSISTEMA</span>
+            <div class="brand-tiles brand-tiles--three">
+              <span class="brand-tile"><span class="brand-symbol tm-symbol"><img src="https://cdn.simpleicons.org/tampermonkey/97b9e6" width="24" height="24" loading="lazy" alt=""></span><span class="brand-name">Tamper<wbr>monkey</span></span>
+              <span class="brand-tile"><span class="brand-symbol atendimento-symbol" aria-hidden="true"><span class="menu-glyph">☰</span></span><span class="brand-name">Max-<wbr>Atendimento</span></span>
+              <span class="brand-tile"><span class="brand-symbol tendi-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" width="23" height="23" fill="none"><path d="M5 5.5h14v10.2H11l-4.3 3v-3H5V5.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="9" cy="10.5" r="1" fill="currentColor"/><circle cx="12" cy="10.5" r="1" fill="currentColor"/><circle cx="15" cy="10.5" r="1" fill="currentColor"/></svg></span><span class="brand-name">TendiChat</span></span>
+            </div>
+          </div>
+          <div class="card-bottom"><span>Abrir MaxDeck</span><span class="card-arrow" aria-hidden="true">↗</span></div>
         </a>
 
-        <article class="project-card nexus-card" data-tool-card>
-          <div class="card-top"><span class="tool-icon" aria-hidden="true">›_</span><span class="card-meta">PowerShell</span></div>
-          <div class="card-copy"><h2>NEXUS</h2><p>Instalador e utilitários</p></div>
+        <!-- NEXUS: ambiente de instalação e distribuição -->
+        <article class="project-card project-card--nexus nexus-card" data-tool-card>
+          <div class="card-top"><span class="card-category"><span class="category-dot"></span> INFRAESTRUTURA</span><span class="card-number">02</span></div>
+          <div class="card-copy"><h2>NEXUS</h2><p>Instalação e manutenção automatizadas</p></div>
+          <div class="identity-panel" aria-label="Tecnologias: PowerShell e MaxData Cloud">
+            <span class="identity-label">AMBIENTE</span>
+            <div class="brand-tiles brand-tiles--two">
+              <span class="brand-tile"><span class="brand-symbol powershell-symbol"><img src="https://cdn.simpleicons.org/powershell/99d6f2" width="26" height="26" loading="lazy" alt=""></span><span class="brand-name">PowerShell</span></span>
+              <span class="brand-tile"><span class="brand-symbol cloud-symbol" aria-hidden="true"><svg viewBox="0 0 26 26" width="25" height="25" fill="none"><path d="M4 7h7l2.3 2.7H22v11H4V7Z" fill="#D83A3D"/><path d="M4 7h7l2.3 2.7H22" stroke="#FF8D91" stroke-width="1.3"/></svg></span><span class="brand-name">MaxData<br>Cloud</span></span>
+            </div>
+          </div>
           <code id="nexus-command" class="sr-only">irm https://caio-csar.github.io/NEXUS/NEXUS_CORE.ps1 | iex</code>
           <button id="copy-nexus" type="button" class="nexus-copy">Copiar comando <span aria-hidden="true">▣</span></button>
           <span id="copy-status" class="sr-only" role="status" aria-live="polite"></span>
         </article>
 
-        <a class="project-card project-link" data-tool-card href="https://caio-csar.github.io/guia-manager-telas/" target="_blank" rel="noopener noreferrer" aria-label="Consultar Guia Manager em nova aba">
-          <div class="card-top"><span class="tool-icon" aria-hidden="true">▤</span><span class="card-arrow" aria-hidden="true">↗</span></div>
-          <div class="card-copy"><h2>Guia Manager</h2><p>Telas, flags e funções</p></div>
-          <span class="card-footnote">Base de consulta</span>
+        <!-- Guia Manager: os dados são a identidade visual -->
+        <a class="project-card project-link project-card--guide" data-tool-card href="https://caio-csar.github.io/guia-manager-telas/" target="_blank" rel="noopener noreferrer" aria-label="Consultar Guia Manager em nova aba">
+          <div class="card-top"><span class="card-category"><span class="category-dot"></span> DOCUMENTAÇÃO</span><span class="card-number">03</span></div>
+          <div class="card-copy"><h2>Guia Manager</h2><p>Consulta rápida ao sistema</p></div>
+          <div class="identity-panel metrics-panel" aria-label="840 telas, 1.911 flags e 1.266 funções">
+            <span class="identity-label">BASE INDEXADA</span>
+            <div class="metrics-tiles">
+              <span class="metric"><strong>840</strong><small>Telas</small></span>
+              <span class="metric"><strong>1.911</strong><small>Flags</small></span>
+              <span class="metric"><strong>1.266</strong><small>Funções</small></span>
+            </div>
+          </div>
+          <div class="card-bottom"><span>Consultar guia</span><span class="card-arrow" aria-hidden="true">↗</span></div>
         </a>
 
-        <a class="project-card project-link" data-tool-card href="https://github.com/caio-csar/MaxHub-Releases/releases/latest" target="_blank" rel="noopener noreferrer" aria-label="Ver última versão do MaxHub em nova aba">
-          <div class="card-top"><span class="tool-icon" aria-hidden="true">▦</span><span class="card-arrow" aria-hidden="true">↗</span></div>
-          <div class="card-copy"><h2>MaxHub</h2><p>Mapeamento e atualização de bancos</p></div>
-          <span class="card-footnote">Aplicativo</span>
+        <!-- MaxHub: Manager e SQL Server -->
+        <a class="project-card project-link project-card--hub" data-tool-card href="https://github.com/caio-csar/MaxHub-Releases/releases/latest" target="_blank" rel="noopener noreferrer" aria-label="Ver última versão do MaxHub em nova aba">
+          <div class="card-top"><span class="card-category"><span class="category-dot"></span> GERENCIAMENTO</span><span class="card-number">04</span></div>
+          <div class="card-copy"><h2>MaxHub</h2><p>Bancos, versões e atualizações</p></div>
+          <div class="identity-panel" aria-label="Tecnologias: Manager e SQL Server">
+            <span class="identity-label">TECNOLOGIAS</span>
+            <div class="brand-tiles brand-tiles--two">
+              <span class="brand-tile"><span class="brand-symbol manager-symbol" aria-hidden="true">X</span><span class="brand-name">Manager</span></span>
+              <span class="brand-tile"><span class="brand-symbol sql-symbol"><img src="https://cdn.simpleicons.org/microsoftsqlserver/ee9298" width="25" height="25" loading="lazy" alt=""></span><span class="brand-name">SQL Server</span></span>
+            </div>
+          </div>
+          <div class="card-bottom"><span>Ver última versão</span><span class="card-arrow" aria-hidden="true">↗</span></div>
         </a>
       </div>
     </section>
