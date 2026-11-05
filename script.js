@@ -64,6 +64,8 @@ Declaro estar ciente de que alterações realizadas diretamente no banco de dado
   function initializeSite() {
     const navLinks = Array.from(document.querySelectorAll('.nav-link'));
     const details = document.querySelector('#request-details');
+    // Em telas pequenas, os modelos iniciam recolhidos. No desktop ficam visíveis.
+    if (details && window.matchMedia('(max-width: 700px)').matches && location.hash !== '#solicitacoes') details.open = false;
     document.querySelector('#tool-count').textContent =
       document.querySelectorAll('[data-tool-card]').length + ' ferramentas';
     document.querySelector('#knowledge-count').textContent =
