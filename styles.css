@@ -184,3 +184,118 @@ button,a { -webkit-tap-highlight-color:transparent; }
 @media(prefers-reduced-motion:reduce) {
   *,*::before,*::after { scroll-behavior:auto!important;transition:none!important; }
 }
+
+
+/* ===============================
+   TOOL CARDS · identidade temática
+   Um sistema visual unificado com marcações distintas por ferramenta.
+   =============================== */
+.project-grid { gap:16px; align-items:stretch; }
+.project-card {
+  --accent:#8db3fc; --tint:rgba(64,110,190,.14); --stage:#151c2a;
+  --stage-border:#31445f; --stage-text:#c3d6fa;
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:284px;padding:18px 17px 15px;
+  display:flex;flex-direction:column;justify-content:initial;gap:0;
+  background:linear-gradient(151deg,#171e28 0%,#121821 55%,#10151d 100%);
+  border:1px solid #344150;border-radius:12px;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.project-card::before {
+  position:absolute;top:0;left:0;right:0;height:3px;z-index:0;
+  background:linear-gradient(90deg,var(--accent) 0%,transparent 86%);content:"";
+}
+.project-card::after {
+  position:absolute;top:-110px;right:-100px;width:265px;height:235px;z-index:0;
+  background:radial-gradient(circle,var(--tint),transparent 72%);
+  pointer-events:none;content:"";
+}
+.project-card > * { position:relative;z-index:1; }
+.project-card--deck { --accent:#83afff;--tint:rgba(72,120,237,.22);--stage:#172033;--stage-border:#2e4467;--stage-text:#bdcffd; }
+.project-card--nexus { --accent:#68d1c8;--tint:rgba(42,152,152,.2);--stage:#142b2d;--stage-border:#2e5453;--stage-text:#b3e8df; }
+.project-card--guide { --accent:#edba73;--tint:rgba(185,120,52,.16);--stage:#30271e;--stage-border:#5b4630;--stage-text:#f0ce9e; }
+.project-card--hub { --accent:#b59ff1;--tint:rgba(124,93,187,.2);--stage:#242034;--stage-border:#4b3d69;--stage-text:#dccdfa; }
+.project-link:hover,.project-link:focus-visible,.project-card--nexus:focus-within {
+  transform:translateY(-3px);border-color:var(--accent);
+  box-shadow:0 14px 36px rgba(0,0,0,.28),0 0 0 1px var(--tint);
+}
+.card-top { display:flex;align-items:center;justify-content:space-between;gap:6px;min-height:19px; }
+.card-category { display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-size:.61rem;line-height:1.2;font-weight:800;letter-spacing:.13em;white-space:nowrap; }
+.category-dot { width:6px;height:6px;flex:0 0 auto;background:var(--accent);border-radius:50%;box-shadow:0 0 0 3px var(--tint); }
+.card-number { color:#65758a;font-size:.71rem;font-weight:700;font-variant-numeric:tabular-nums; }
+.project-card .card-copy { margin:15px 0 12px;min-height:55px; }
+.project-card .card-copy h2 { margin:0 0 4px;font-size:1.34rem;font-weight:850;letter-spacing:-.047em;line-height:1.2; }
+.project-card .card-copy p { margin:0;color:#a4b1c2;font-size:.75rem;line-height:1.45; }
+.identity-panel {
+  min-height:108px;padding:10px 10px 11px;margin-top:auto;
+  border:1px solid var(--stage-border);border-radius:10px;
+  background:linear-gradient(145deg,var(--stage),rgba(10,15,21,.6));
+}
+.identity-label {
+  display:block;margin:0 0 8px;color:var(--stage-text);
+  font-size:.57rem;font-weight:800;letter-spacing:.14em;line-height:1.1;
+}
+.brand-tiles { display:grid;align-items:stretch;gap:6px; }
+.brand-tiles--three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.brand-tiles--two { grid-template-columns:repeat(2,minmax(0,1fr));gap:8px; }
+.brand-tile {
+  display:flex;min-width:0;min-height:69px;flex-direction:column;align-items:center;
+  justify-content:center;gap:5px;padding:5px 3px;
+  border:1px solid rgba(189,211,245,.10);border-radius:8px;
+  background:rgba(5,10,16,.31);
+  text-align:center;
+}
+.brand-symbol { width:26px;height:27px;display:flex;align-items:center;justify-content:center;flex:none; }
+.brand-symbol img { max-width:100%;max-height:100%;object-fit:contain; }
+.brand-name { color:#d8e1ee;font-size:.585rem;font-weight:750;line-height:1.15;overflow-wrap:anywhere;hyphens:none; }
+.tm-symbol { color:#a9c7f4; }
+.atendimento-symbol { width:27px;height:27px;border-radius:50%;color:#fff;background:#236ab9;box-shadow:0 2px 8px rgba(43,116,209,.3); }
+.menu-glyph { font-size:1.12rem;line-height:1;transform:scaleX(.87); }
+.tendi-symbol { color:#6bbad9; }
+.powershell-symbol { width:31px; }
+.cloud-symbol { color:#e94c4f; }
+.manager-symbol { font-family:Arial,Helvetica,sans-serif;font-weight:1000;font-style:italic;font-size:2rem;line-height:1;color:#e43741;letter-spacing:-.1em;text-shadow:1px 1px 0 rgba(0,0,0,.2); }
+.sql-symbol { color:#e88c92; }
+.metrics-tiles { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px; }
+.metric {
+  min-width:0;min-height:69px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:5px;padding:5px 2px;
+  border:1px solid rgba(238,193,127,.15);border-radius:8px;
+  background:rgba(18,14,10,.31);
+}
+.metric strong { color:#ffd49b;font-size:clamp(.97rem,1.1vw,1.2rem);line-height:1;font-weight:850;letter-spacing:-.04em;font-variant-numeric:tabular-nums; }
+.metric small { color:#cbb399;font-size:.66rem;font-weight:650; }
+.card-bottom { display:flex;align-items:center;justify-content:space-between;margin-top:14px;color:#ccd8e6;font-weight:750;font-size:.74rem;line-height:1.3; }
+.card-bottom .card-arrow { color:var(--accent);font-size:1.17rem; }
+.project-link:hover .card-bottom,.project-link:focus-visible .card-bottom { color:#fff; }
+.nexus-card .nexus-copy {
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:12px;min-height:36px;width:100%;padding:7px 11px;
+  color:#b7f0e5;background:rgba(24,73,72,.55);
+  border:1px solid #3b7775;border-radius:8px;
+  font-size:.735rem;font-weight:800;transition:background .18s,border-color .18s;
+}
+.nexus-card .nexus-copy:hover { background:#24514f;border-color:#78cfc4; }
+.nexus-card .nexus-copy.is-copied { color:#bff3d9;background:#224537;border-color:#4cb088; }
+@media (min-width:1001px) and (max-width:1250px) {
+  .brand-name { font-size:.55rem; }
+  .project-card { padding-left:13px;padding-right:13px; }
+  .identity-panel { padding-left:7px;padding-right:7px; }
+  .brand-tiles { gap:4px; }
+}
+@media(max-width:1000px) {
+  .project-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .project-card { min-height:275px; }
+  .brand-name { font-size:.68rem; }
+}
+@media(max-width:700px) {
+  .project-grid { grid-template-columns:1fr;gap:12px; }
+  .project-card { min-height:265px;padding:17px; }
+  .brand-tiles { gap:8px; }
+  .brand-name { font-size:.7rem; }
+  .metric strong { font-size:1.25rem; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .project-card { transition:none!important; }
+  .project-link:hover,.project-link:focus-visible { transform:none!important; }
+}
