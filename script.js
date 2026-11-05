@@ -3,140 +3,30 @@
 
   const NEXUS_COMMAND = 'irm https://caio-csar.github.io/NEXUS/NEXUS_CORE.ps1 | iex';
 
-  function normalizeSearch(value) {
-    return String(value ?? '')
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLocaleLowerCase('pt-BR')
-      .trim();
-  }
-
-  function matchesSearch(searchableText, query) {
-    return normalizeSearch(searchableText).includes(normalizeSearch(query));
-  }
-
-  function selectCommandText(commandElement) {
-    const selection = window.getSelection();
-    const range = document.createRange();
-    range.selectNodeContents(commandElement);
-    selection.removeAllRanges();
-    selection.addRange(range);
-  }
-
-  function legacyCopy(command) {
-    const textarea = document.createElement('textarea');
-    textarea.value = command;
-    textarea.setAttribute('readonly', '');
-    textarea.style.position = 'fixed';
-    textarea.style.opacity = '0';
-    document.body.appendChild(textarea);
-    textarea.select();
+  function legacyCopy(value) {
+    const field = document.createElement('textarea');
+    field.value = value;
+    field.readOnly = true;
+    field.style.cssText = 'position:fixed;left:-9999px;opacity:0';
+    document.body.appendChild(field);
+    field.select();
     const copied = document.execCommand('copy');
-    textarea.remove();
+    field.remove();
     return copied;
   }
-
-  function initializeSite() {
-    const cards = Array.from(document.querySelectorAll('[data-project-card]'));
-    const resourceCount = document.querySelector('#resource-count');
-    if (resourceCount) resourceCount.textContent = `${cards.length} ${cards.length === 1 ? 'recurso' : 'recursos'}`;
-    const search = document.querySelector('#project-search');
-    const emptyState = document.querySelector('#empty-state');
-    const projectSection = document.querySelector('#projetos');
-    const knowledgeSection = document.querySelector('#conhecimento');
-    const copyButton = document.querySelector('#copy-nexus');
-    const commandElement = document.querySelector('#nexus-command');
-    const copyStatus = document.querySelector('#copy-status');
-
-    function filterCards(query) {
-      let visible = 0;
-
-      cards.forEach((card) => {
-        const searchableText = card.dataset.search || card.textContent;
-        const match = matchesSearch(searchableText, query);
-        card.hidden = !match;
-        if (match) visible += 1;
-      });
-
-      [projectSection, knowledgeSection].forEach((section) => {
-        if (!section) return;
-        const hasVisibleCard = Array.from(section.querySelectorAll('[data-project-card]'))
-          .some((card) => !card.hidden);
-        section.hidden = !hasVisibleCard;
-      });
-
-      if (emptyState) {
-        emptyState.hidden = visible !== 0;
-        emptyState.textContent = visible === 0
-          ? 'Nenhum projeto encontrado para essa busca.'
-          : `${visible} ${visible === 1 ? 'resultado encontrado' : 'resultados encontrados'}.`;
+  async function copyText(value) {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(value);
+        return true;
       }
-
-      return visible;
+      return legacyCopy(value);
+    } catch (_error) {
+      try { return legacyCopy(value); } catch (_ignored) { return false; }
     }
+  }
 
-    async function copyNexusCommand() {
-      const command = commandElement?.textContent.trim() || NEXUS_COMMAND;
-      let copied = false;
-
-      try {
-        if (navigator.clipboard?.writeText) {
-          await navigator.clipboard.writeText(command);
-          copied = true;
-        } else {
-          copied = legacyCopy(command);
-        }
-      } catch (_error) {
-        copied = legacyCopy(command);
-      }
-
-      if (copied) {
-        copyStatus.classList.add('sr-only');
-        copyStatus.classList.remove('copy-error');
-        copyButton.firstChild.textContent = 'Comando copiado ';
-        copyStatus.textContent = 'Comando copiado.';
-        copyButton.classList.add('is-copied');
-
-        window.setTimeout(() => {
-          copyButton.firstChild.textContent = 'Copiar comando ';
-          copyButton.classList.remove('is-copied');
-        }, 1800);
-      } else {
-        selectCommandText(commandElement);
-        copyStatus.classList.remove('sr-only');
-        copyStatus.classList.add('copy-error');
-        copyStatus.textContent = 'Selecione e copie o comando.';
-      }
-
-      return copied;
-    }
-
-    search?.addEventListener('input', (event) => filterCards(event.currentTarget.value));
-    copyButton?.addEventListener('click', copyNexusCommand);
-
-    document.addEventListener('keydown', (event) => {
-      const target = event.target;
-      const isEditable = target instanceof HTMLInputElement
-        || target instanceof HTMLTextAreaElement
-        || target?.isContentEditable;
-
-      if (event.key === '/' && !isEditable) {
-        event.preventDefault();
-        search?.focus();
-      }
-    });
-
-    document.querySelectorAll('.nav-link').forEach((link) => {
-      link.addEventListener('click', () => {
-        document.querySelectorAll('.nav-link').forEach((item) => item.classList.remove('is-active'));
-        link.classList.add('is-active');
-      });
-    });
-
-
-
-    // Orientações copiáveis para solicitações formais.
-    const requestTemplates = {
+  const requestTemplates = {
       regime: `Para solicitar a alteração do regime de apuração da empresa, é necessário encaminhar um e-mail para theneds@maxdata.com.br, utilizando o modelo abaixo e preenchendo os dados solicitados.
 
 *Assunto: SOLICITAÇÃO DE ALTERAÇÃO DE REGIME*
@@ -171,155 +61,164 @@ Declaro estar ciente de que alterações realizadas diretamente no banco de dado
 *IMPORTANTE:* A solicitação estará sujeita à análise de viabilidade técnica. O envio deste e-mail não garante a execução do procedimento.`
     };
 
-    // Prévia visual formatada; cópia usa exclusivamente o texto original.
-    const requestDialog = document.querySelector('#request-dialog');
-    const requestPreview = document.querySelector('#request-preview');
-    const requestTitle = document.querySelector('#request-dialog-title');
-    const requestStatus = document.querySelector('#request-dialog-status');
-    const requestCopy = document.querySelector('#request-dialog-copy');
-    const requestClose = document.querySelector('#request-dialog-close');
-    const requestNames = { regime: 'Alteração de regime', estoque: 'Zerar saldo de estoque', massa: 'Alteração em massa via banco de dados' };
-    let selectedRequest = '';
+  function initializeSite() {
+    const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+    const details = document.querySelector('#request-details');
+    document.querySelector('#tool-count').textContent =
+      document.querySelectorAll('[data-tool-card]').length + ' ferramentas';
+    document.querySelector('#knowledge-count').textContent =
+      document.querySelectorAll('[data-knowledge-card]').length + ' bases';
+    document.querySelector('#request-count').textContent =
+      document.querySelectorAll('[data-preview-template]').length + ' modelos';
+
+    function setActiveNavigation(hash) {
+      navLinks.forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === hash));
+    }
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const target = link.getAttribute('href');
+        if (target === '#solicitacoes' && details) details.open = true;
+        setActiveNavigation(target);
+      });
+    });
+    if (location.hash === '#solicitacoes' && details) details.open = true;
+    if (navLinks.some(link => link.getAttribute('href') === location.hash)) setActiveNavigation(location.hash);
+
+    const nexusCopy = document.querySelector('#copy-nexus');
+    const nexusStatus = document.querySelector('#copy-status');
+    const nexusText = document.querySelector('#nexus-command');
+    let nexusTimer;
+    nexusCopy.addEventListener('click', async () => {
+      const success = await copyText(nexusText.textContent.trim() || NEXUS_COMMAND);
+      window.clearTimeout(nexusTimer);
+      if (success) {
+        nexusCopy.classList.add('is-copied');
+        nexusCopy.firstChild.textContent = 'Comando copiado ';
+        nexusStatus.textContent = 'Comando copiado para a área de transferência.';
+        nexusTimer = window.setTimeout(() => {
+          nexusCopy.classList.remove('is-copied');
+          nexusCopy.firstChild.textContent = 'Copiar comando ';
+        }, 1900);
+      } else {
+        nexusStatus.classList.remove('sr-only');
+        nexusStatus.classList.add('copy-error');
+        nexusStatus.textContent = 'Não foi possível copiar o comando.';
+      }
+    });
+
+    const dialog = document.querySelector('#request-dialog');
+    const preview = document.querySelector('#request-preview');
+    const dialogTitle = document.querySelector('#request-dialog-title');
+    const dialogStatus = document.querySelector('#request-dialog-status');
+    const dialogCopy = document.querySelector('#request-dialog-copy');
+    const dialogClose = document.querySelector('#request-dialog-close');
+    const requestNames = {
+      regime: 'Alteração de regime',
+      estoque: 'Zerar saldo de estoque',
+      massa: 'Alteração em massa via banco de dados'
+    };
+    let selectedRequest = null;
     let previousFocus = null;
-    function showFormattedRequest(message) {
-      requestPreview.replaceChildren();
-      // Os asteriscos delimitam negrito apenas na prévia; não são exibidos.
-      // A ação de copiar continua usando requestTemplates[selectedRequest] sem alterações.
-      const parts = message.split('*');
-      parts.forEach((part, index) => {
-        if (!part) return;
-        const isBold = index % 2 === 1 && index < parts.length - 1;
-        if (isBold) {
+
+    function renderFormattedPreview(message) {
+      preview.replaceChildren();
+      const pieces = message.split('*');
+      pieces.forEach((piece, index) => {
+        if (!piece) return;
+        if (index % 2 === 1 && index < pieces.length - 1) {
           const strong = document.createElement('strong');
-          strong.textContent = part;
-          requestPreview.appendChild(strong);
+          strong.textContent = piece;
+          preview.appendChild(strong);
         } else {
-          requestPreview.appendChild(document.createTextNode(part));
+          preview.appendChild(document.createTextNode(piece));
         }
       });
     }
-    document.querySelectorAll('[data-preview-template]').forEach((button) => {
+    document.querySelectorAll('[data-preview-template]').forEach(button => {
       button.addEventListener('click', () => {
         const key = button.dataset.previewTemplate;
-        if (!requestTemplates[key] || !requestDialog) return;
+        if (!requestTemplates[key]) return;
         selectedRequest = key;
         previousFocus = document.activeElement;
-        requestTitle.textContent = requestNames[key] || 'Prévia da solicitação';
-        showFormattedRequest(requestTemplates[key]);
-        requestStatus.textContent = '';
-        requestCopy.textContent = '▣ Copiar mensagem';
-        requestDialog.showModal();
+        dialogTitle.textContent = requestNames[key] || 'Prévia da solicitação';
+        renderFormattedPreview(requestTemplates[key]);
+        dialogStatus.textContent = '';
+        dialogCopy.textContent = '▣ Copiar mensagem';
+        dialog.showModal();
       });
     });
-    requestClose?.addEventListener('click', () => requestDialog.close());
-    requestDialog?.addEventListener('click', (event) => {
-      if (event.target === requestDialog) requestDialog.close();
-    });
-    requestDialog?.addEventListener('close', () => previousFocus?.focus());
-    requestCopy?.addEventListener('click', async () => {
+    dialogClose.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', () => { if (previousFocus) previousFocus.focus(); });
+    dialogCopy.addEventListener('click', async () => {
       const message = requestTemplates[selectedRequest];
       if (!message) return;
-      let copied = false;
-      try {
-        if (navigator.clipboard?.writeText) {
-          await navigator.clipboard.writeText(message);
-          copied = true;
-        } else {
-          copied = legacyCopy(message);
-        }
-      } catch (_error) {
-        copied = legacyCopy(message);
-      }
-      requestStatus.textContent = copied ? 'Mensagem copiada com formatação para WhatsApp.' : 'Não foi possível copiar. Verifique as permissões.';
-      if (copied) requestCopy.textContent = '✓ Copiado!';
+      const success = await copyText(message);
+      dialogStatus.textContent = success ? 'Mensagem copiada com formatação para WhatsApp.' : 'Não foi possível copiar.';
+      if (success) dialogCopy.textContent = '✓ Copiado!';
     });
 
-    // Easter egg isolado: um clique no nome libera uma mosca por até 30 segundos.
-    let activeFly = null;
-    let flyFrame = 0;
-    let flyExpiry = 0;
+    // Easter egg: clique no nome do portal para soltar uma mosca.
+    let fly = null;
+    let frame = 0;
+    let expire = 0;
     let toastTimer = 0;
-    function releaseFly(event) {
-      if (event?.type === 'keydown' && !['Enter', ' '].includes(event.key)) return;
-      event?.preventDefault();
-      if (activeFly) return;
-      window.clearTimeout(toastTimer);
-      document.querySelector('.fly-toast')?.remove();
-      const fly = document.createElement('button');
-      fly.type = 'button';
-      fly.className = 'fly-easteregg';
-      fly.textContent = '🪰';
-      fly.setAttribute('aria-label', 'Capturar mosca');
-      fly.title = 'Pegue a mosca!';
-      document.body.appendChild(fly);
-      activeFly = fly;
-      let x = Math.max(4, window.innerWidth * .55);
-      let y = Math.max(4, window.innerHeight * .35);
-      let vx = 2.1, vy = 1.45, last = 0;
-      const born = performance.now();
-      function clearFly() {
-        cancelAnimationFrame(flyFrame);
-        clearTimeout(flyExpiry);
-        fly.remove();
-        activeFly = null;
-      }
-      fly.addEventListener('click', (e) => {
-        e.stopPropagation();
-        clearFly();
-        const toast = document.createElement('div');
-        toast.className = 'fly-toast';
-        toast.setAttribute('role', 'status');
-        toast.innerHTML = '🪰 Vai trabalhar, moss! 😂<small>Easter egg encontrado!</small>';
-        document.body.appendChild(toast);
-        toastTimer = setTimeout(() => toast.remove(), 4500);
-      });
-      function move(now) {
-        if (!activeFly) return;
-        const dt = Math.min((now - (last || now)) / 16.67, 2);
-        last = now;
-        const maxX = Math.max(0, innerWidth - 50), maxY = Math.max(0, innerHeight - 50);
-        if (Math.random() < .035) { vx += (Math.random() - .5) * 2.5; vy += (Math.random() - .5) * 2.5; }
-        const clamp = (v) => Math.sign(v || 1) * Math.max(1.2, Math.min(Math.abs(v), 4));
-        vx = clamp(vx); vy = clamp(vy);
-        x += vx * dt; y += vy * dt;
-        if (x <= 0 || x >= maxX) { vx = -vx; x = Math.max(0, Math.min(maxX, x)); }
-        if (y <= 0 || y >= maxY) { vy = -vy; y = Math.max(0, Math.min(maxY, y)); }
-        fly.style.left = x + 'px';
-        fly.style.top = y + 'px';
-        fly.style.transform = 'rotate(' + (Math.sin((now - born) / 80) * 13) + 'deg)';
-        flyFrame = requestAnimationFrame(move);
-      }
-      const dodge = (e) => {
-        if (!activeFly || e.pointerType === 'touch') return;
-        const dx = x + 23 - e.clientX, dy = y + 23 - e.clientY;
-        const d = Math.hypot(dx, dy);
-        if (d > 15 && d < 85) { vx += (dx / d) * .65; vy += (dy / d) * .65; }
-      };
-      document.addEventListener('pointermove', dodge, { passive: true });
-      const originalClear = clearFly;
-      function finish() { document.removeEventListener('pointermove', dodge); originalClear(); }
-      // Replace expiry/click cleanup with listener-aware cleanup.
-      fly.addEventListener('click', () => document.removeEventListener('pointermove', dodge), { once: true });
-      flyExpiry = window.setTimeout(finish, 30000);
-      flyFrame = requestAnimationFrame(move);
+    let x=0, y=0, vx=2.2, vy=1.6, lastFrame=0;
+    const cursor = {x:-1000,y:-1000};
+    const pointerMove = event => { cursor.x=event.clientX; cursor.y=event.clientY; };
+    function removeFly() {
+      cancelAnimationFrame(frame);
+      clearTimeout(expire);
+      document.removeEventListener('pointermove',pointerMove);
+      if (fly) fly.remove();
+      fly=null;
     }
-    document.querySelectorAll('.brand-small, .brand-large').forEach((brand) => {
-      brand.addEventListener('click', releaseFly);
-      if (brand.matches('[role="button"]')) brand.addEventListener('keydown', releaseFly);
+    function flyTick(now) {
+      if (!fly) return;
+      const dt=Math.min((now-(lastFrame||now))/16.67,2);
+      lastFrame=now;
+      if (Math.random()<.035) { vx+=(Math.random()-.5)*2; vy+=(Math.random()-.5)*2; }
+      const dist=Math.hypot(x+23-cursor.x,y+23-cursor.y);
+      if (dist>6&&dist<100) { vx+=(x+23-cursor.x)/dist*.42; vy+=(y+23-cursor.y)/dist*.42; }
+      function speed(v) { return Math.sign(v||1)*Math.max(1.5,Math.min(Math.abs(v),5)); }
+      vx=speed(vx);vy=speed(vy);
+      x+=vx*dt;y+=vy*dt;
+      const maxX=Math.max(0,innerWidth-50),maxY=Math.max(0,innerHeight-50);
+      if (x<0||x>maxX) { vx=-vx;x=Math.max(0,Math.min(maxX,x)); }
+      if (y<0||y>maxY) { vy=-vy;y=Math.max(0,Math.min(maxY,y)); }
+      fly.style.left=x+'px';fly.style.top=y+'px';
+      fly.style.transform='rotate('+Math.sin(now/70)*12+'deg)';
+      frame=requestAnimationFrame(flyTick);
+    }
+    document.querySelector('.brand-trigger').addEventListener('click', () => {
+      if (fly) return;
+      clearTimeout(toastTimer);
+      document.querySelector('.fly-toast')?.remove();
+      fly=document.createElement('button');
+      fly.type='button';fly.className='fly-easteregg';
+      fly.textContent='🪰';fly.setAttribute('aria-label','Capturar mosca');
+      fly.title='Pegue a mosca!';
+      x=Math.max(0,Math.min(innerWidth-50,innerWidth*.57));
+      y=Math.max(0,Math.min(innerHeight-50,innerHeight*.4));
+      vx=2.2;vy=1.6;lastFrame=0;
+      document.body.appendChild(fly);
+      document.addEventListener('pointermove',pointerMove,{passive:true});
+      fly.addEventListener('click',event=>{
+        event.stopPropagation();
+        removeFly();
+        const toast=document.createElement('div');
+        toast.className='fly-toast';toast.setAttribute('role','status');
+        toast.innerHTML='🪰 Vai trabalhar, moss! 😂<small>Easter egg encontrado!</small>';
+        document.body.appendChild(toast);
+        toastTimer=setTimeout(()=>toast.remove(),4500);
+      });
+      expire=setTimeout(removeFly,30000);
+      frame=requestAnimationFrame(flyTick);
     });
-
-    return { filterCards, copyNexusCommand };
-  }
-
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { normalizeSearch, matchesSearch, NEXUS_COMMAND };
   }
 
   if (typeof document !== 'undefined') {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initializeSite, { once: true });
-    } else {
-      initializeSite();
-    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',initializeSite,{once:true});
+    else initializeSite();
   }
 })();
