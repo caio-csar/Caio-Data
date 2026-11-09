@@ -63,56 +63,6 @@ Declaro estar ciente de que alterações realizadas diretamente no banco de dado
 
   function initializeSite() {
 
-    // Base interna: nenhum arquivo é enviado à rede nem adicionado ao GitHub Pages.
-    // Seleção local na primeira interação; abertura em nova aba na segunda.
-    const kbLaunch = document.querySelector('#kb-local-launch');
-    const kbPicker = document.querySelector('#kb-local-file');
-    const kbInfo = document.querySelector('#kb-local-info');
-    const kbAction = kbLaunch?.querySelector('.knowledge-feature-action-label');
-    let kbObjectUrl = null;
-    if (kbLaunch && kbPicker) {
-      kbLaunch.addEventListener('click', () => {
-        if (!kbObjectUrl) {
-          kbPicker.click();
-          return;
-        }
-        const link = document.createElement('a');
-        link.href = kbObjectUrl;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-      });
-
-      kbPicker.addEventListener('change', async () => {
-        const selected = kbPicker.files && kbPicker.files[0];
-        if (!selected) return;
-        if (!/\.html?$/i.test(selected.name) || selected.size > 25 * 1024 * 1024) {
-          kbInfo.textContent = 'Selecione o arquivo HTML da base, com até 25 MB.';
-          return;
-        }
-        try {
-          const header = await selected.slice(0, 8192).text();
-          if (!header.includes('Base de Conhecimento MaxData')) {
-            kbInfo.textContent = 'Arquivo diferente da Base de Conhecimento MaxData. Selecione o HTML correto.';
-            return;
-          }
-          if (kbObjectUrl) URL.revokeObjectURL(kbObjectUrl);
-          kbObjectUrl = URL.createObjectURL(selected);
-          kbLaunch.classList.add('is-ready');
-          kbAction.textContent = 'Abrir base';
-          kbLaunch.title = 'Abrir a base selecionada em uma nova aba';
-          kbInfo.textContent = 'Base local pronta. Clique novamente no atalho para abrir em uma nova aba. Nenhum dado foi enviado.';
-        } catch (_error) {
-          kbInfo.textContent = 'Não foi possível ler o arquivo HTML selecionado.';
-        }
-      });
-      window.addEventListener('pagehide', () => {
-        if (kbObjectUrl) URL.revokeObjectURL(kbObjectUrl);
-      });
-    }
-
     const navLinks = Array.from(document.querySelectorAll('.nav-link'));
     const details = document.querySelector('#request-details');
     // Em telas pequenas, os modelos iniciam recolhidos. No desktop ficam visíveis.
