@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1118">
+<meta name="description" content="Base de soluções técnicas MaxData: 86 casos documentados, busca por erros, módulos e procedimentos.">
+<title>Base de Soluções MaxData | Painel de Utilitários</title>
+<link rel="stylesheet" href="./styles.css">
+<script src="./dados.js" defer></script>
+<script src="./app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#results">Pular para resultados</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../"><span aria-hidden="true">←</span><span>Voltar ao Painel de Utilitários</span></a>
+    <span class="header-context"><i></i> CONSULTA TÉCNICA</span>
+  </div>
+</header>
+<main class="shell">
+  <section class="hero" aria-labelledby="page-title">
+    <div class="hero-copy">
+      <p class="eyebrow">CONHECIMENTO CONSOLIDADO <span class="line"></span> MAXDATA</p>
+      <h1 id="page-title">Base de <span>Soluções</span></h1>
+      <p class="hero-desc">Histórico de erros, causas e procedimentos registrados no suporte técnico. Encontre um caso, consulte o diagnóstico e verifique as condições antes de aplicar a orientação.</p>
+      <div class="hero-labels"><span>Fiscal</span><span>PDV</span><span>SQL Server</span><span>Instalação</span><span>Manager</span></div>
+    </div>
+    <div class="hero-ornament" aria-hidden="true"><span class="ornament-ring ring-one"></span><span class="ornament-ring ring-two"></span><span class="ornament-icon">⌁</span><span class="ornament-label">KB / MAXDATA</span></div>
+  </section>
+  <section class="overview" aria-label="Resumo da base">
+    <div class="stat"><strong id="stat-cases">86</strong><span>Casos documentados</span></div>
+    <div class="stat"><strong id="stat-confirmed">78</strong><span>Confirmados</span></div>
+    <div class="stat"><strong id="stat-risk">16</strong><span>Casos de alto risco ou crítico</span></div>
+    <div class="stat"><strong>2025–26</strong><span>Período do histórico</span></div>
+  </section>
+  <section class="notice" aria-label="Orientações de uso">
+    <span class="notice-icon" aria-hidden="true">!</span>
+    <p><strong>Registro histórico de suporte.</strong> Procedimentos podem depender da versão, do ambiente e das regras fiscais atuais. Alterações em banco de dados exigem backup, autorização, validação técnica e plano de reversão. A versão pública omite conversas e anexos originais.</p>
+  </section>
+  <section class="workspace" aria-labelledby="results-heading">
+    <div class="workspace-heading">
+      <div><p class="eyebrow">PESQUISA E CONSULTA</p><h2 id="results-heading">Casos documentados</h2></div>
+      <span class="result-counter" id="count" role="status" aria-live="polite">Carregando...</span>
+    </div>
+    <div class="filters">
+      <label class="search-field" for="search">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>
+        <input id="search" type="search" autocomplete="off" placeholder="Pesquisar erro, tela, versão, tabela ou procedimento…">
+      </label>
+      <label class="filter-field"><span>Módulo</span><select id="module" aria-label="Filtrar por módulo"><option value="">Todos os módulos</option></select></label>
+      <label class="filter-field"><span>Status</span><select id="status" aria-label="Filtrar por status"><option value="">Todos</option></select></label>
+      <label class="filter-field"><span>Risco</span><select id="risk" aria-label="Filtrar por risco"><option value="">Todos</option></select></label>
+      <button id="clear" class="clear-button" type="button">Limpar filtros</button>
+    </div>
+    <div class="results" id="results"></div>
+    <div id="empty" class="empty" hidden><span aria-hidden="true">⌕</span><strong>Nenhum caso encontrado</strong><p>Tente outra palavra-chave ou remova algum filtro.</p></div>
+    <button id="more" class="load-more" type="button" hidden>Carregar mais casos <span aria-hidden="true">↓</span></button>
+  </section>
+</main>
+<footer class="footer"><span>Base histórica de suporte · Dados consolidados até 06/11/2026</span><a href="../">Painel de Utilitários ↗</a></footer>
+</body>
+</html>
