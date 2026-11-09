@@ -88,7 +88,7 @@ Declaro estar ciente de que alterações realizadas diretamente no banco de dado
       kbPicker.addEventListener('change', async () => {
         const selected = kbPicker.files && kbPicker.files[0];
         if (!selected) return;
-        if (!/\\.html?$/i.test(selected.name) || selected.size > 25 * 1024 * 1024) {
+        if (!/\.html?$/i.test(selected.name) || selected.size > 25 * 1024 * 1024) {
           kbInfo.textContent = 'Selecione o arquivo HTML da base, com até 25 MB.';
           return;
         }
